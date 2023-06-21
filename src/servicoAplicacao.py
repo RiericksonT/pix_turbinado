@@ -5,6 +5,16 @@ HOST = '127.0.0.1'
 PORT = 5000
 
 
+def is_port_in_use(port):
+    try:
+        test_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        test_socket.bind(('127.0.0.1', port))
+        test_socket.close()
+        return False
+    except OSError:
+        return True
+
+
 def handle_client_request(client_socket):
     # Lógica para processar as operações transacionais e acessar o servidor de dados
     request = client_socket.recv(1024).decode().strip()
@@ -16,9 +26,15 @@ def handle_client_request(client_socket):
 
 
 # Inicie o servidor de aplicação
-application_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-application_server.bind((HOST, PORT))
-application_server.listen()
+if is_port_in_use(PORT):
+    PORT += 1
+    application_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    application_server.bind((HOST, PORT))
+    application_server.listen()
+else:
+    application_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    application_server.bind((HOST, PORT))
+    application_server.listen()
 
 print(f'Servidor iniciado em {HOST}:{PORT}')
 
