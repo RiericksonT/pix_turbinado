@@ -2,7 +2,7 @@
 import socket
 
 HOST = '127.0.0.1'
-PORT = 5000
+PORT = 53
 
 dns_table = {
     'www.example.com': ('127.0.0.1', 8000)  # Exemplo de mapeamento de domínio para endereço IP e porta do balanceador de carga
