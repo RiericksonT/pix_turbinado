@@ -3,6 +3,7 @@ import socket
 DNS_HOST = '127.0.0.1'
 DNS_PORT = 53
 
+
 def get_load_balancer_address(domain):
     # Conecte-se ao servidor DNS e obtenha o endereço IP e a porta do balanceador de carga para o domínio especificado
     dns_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -12,6 +13,7 @@ def get_load_balancer_address(domain):
     dns_socket.close()
     return response.split(':')
 
+
 def send_request_to_load_balancer(address, request):
     # Conecte-se ao balanceador de carga e envie a solicitação
     lb_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -20,6 +22,7 @@ def send_request_to_load_balancer(address, request):
     response = lb_socket.recv(1024).decode()
     lb_socket.close()
     return response
+
 
 # Solicite o domínio ao usuário
 domain = input("Digite o domínio: ")

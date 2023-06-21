@@ -1,5 +1,8 @@
 import socket
 
+HOST = '127.0.0.1'
+PORT = 7000
+
 # Lista de endereços de sockets
 socket_addresses = [
     ('localhost', 5000),
@@ -10,12 +13,12 @@ socket_addresses = [
 socket_queue = list(socket_addresses)
 
 
-def load_balancer(request):
+def load_balancer(request, socket_requesting):
     # Obtém o próximo socket da fila
     socket_address = socket_queue.pop(0)
 
     # Envia a requisição para o socket selecionado
-    response = send_request(socket_address, request)
+    response = send_request(socket_address, request, socket_requesting)
 
     # Adiciona o socket usado de volta à fila
     socket_queue.append(socket_address)
@@ -23,7 +26,7 @@ def load_balancer(request):
     return response
 
 
-def send_request(socket_address, request):
+def send_request(socket_address, request, socket_requesting):
     # Cria um socket TCP
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -37,14 +40,20 @@ def send_request(socket_address, request):
         # Recebe a resposta
         response = sock.recv(1024).decode()
 
+        # Envia a resposta para o socket que solicitou
+        socket_requesting.sendall(response.encode())
+
         return response
     finally:
         # Fecha o socket
         sock.close()
 
 
+loadbalancer_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+loadbalancer_server.bind((HOST, PORT))
+loadbalancer_server.listen()
 # Exemplo de uso
 while True:
-    request = input('Digite uma mensagem: ')
-    response = load_balancer(request)
-    print(response)
+    # listen new connection
+    client_socket, _ = loadbalancer_server.accept()
+    load_balancer('GET / HTTP/1.1', client_socket)

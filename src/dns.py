@@ -6,7 +6,7 @@ PORT = 53
 
 dns_table = {
     # Exemplo de mapeamento de domínio para endereço IP e porta do balanceador de carga
-    'www.example.com': ('127.0.0.1', 8000)
+    'www.example.com': ('127.0.0.1', 7000)
 }
 
 
