@@ -1,51 +1,50 @@
-# Código do balanceador de carga
 import socket
 
-HOST = '127.0.0.1'
-PORT = 8000
-
-computing_nodes = [
-    ('127.0.0.1', 9001),  # Exemplo de endereços IP e portas dos pontos de computação
-    ('127.0.0.1', 9002),
-    ('127.0.0.1', 9003)
+# Lista de endereços de sockets
+socket_addresses = [
+    ('localhost', 5000),
+    ('localhost', 5001)
 ]
 
-verification_nodes = [
-    ('127.0.0.1', 10001),  # Exemplo de endereços IP e portas dos pontos de verificação
-    ('127.0.0.1', 10002),
-    ('127.0.0.1', 10003)
-]
+# Fila de sockets
+socket_queue = list(socket_addresses)
 
-def handle_client_request(client_socket):
-    # Lógica para encaminhar a requisição do cliente para um ponto de computação e verificação adequado
-    request = client_socket.recv(1024).decode().strip()
 
-    # Encaminhar para um ponto de computação
-    computing_node = computing_nodes.pop(0)
-    computing_nodes.append(computing_node)
-    computing_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    computing_socket.connect(computing_node)
-    computing_socket.sendall(request.encode())
-    response = computing_socket.recv(1024)
-    computing_socket.close()
+def load_balancer(request):
+    # Obtém o próximo socket da fila
+    socket_address = socket_queue.pop(0)
 
-    # Encaminhar para um ponto de verificação
-    verification_node = verification_nodes.pop(0)
-    verification_nodes.append(verification_node)
-    verification_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    verification_socket.connect(verification_node)
-    verification_socket.sendall(response)
-    verified_response = verification_socket.recv(1024)
-    verification_socket.close()
+    # Envia a requisição para o socket selecionado
+    response = send_request(socket_address, request)
 
-    client_socket.sendall(verified_response)
-    client_socket.close()
+    # Adiciona o socket usado de volta à fila
+    socket_queue.append(socket_address)
 
-# Inicie o balanceador de carga
-load_balancer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-load_balancer.bind((HOST, PORT))
-load_balancer.listen()
+    return response
 
+
+def send_request(socket_address, request):
+    # Cria um socket TCP
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    try:
+        # Conecta ao socket selecionado
+        sock.connect(socket_address)
+
+        # Envia a requisição
+        sock.sendall(request.encode())
+
+        # Recebe a resposta
+        response = sock.recv(1024).decode()
+
+        return response
+    finally:
+        # Fecha o socket
+        sock.close()
+
+
+# Exemplo de uso
 while True:
-    client_socket, _ = load_balancer.accept()
-    handle_client_request(client_socket)
+    request = input('Digite uma mensagem: ')
+    response = load_balancer(request)
+    print(response)
