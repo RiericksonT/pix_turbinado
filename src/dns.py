@@ -5,8 +5,10 @@ HOST = '127.0.0.1'
 PORT = 53
 
 dns_table = {
-    'www.example.com': ('127.0.0.1', 8000)  # Exemplo de mapeamento de domínio para endereço IP e porta do balanceador de carga
+    # Exemplo de mapeamento de domínio para endereço IP e porta do balanceador de carga
+    'www.example.com': ('127.0.0.1', 8000)
 }
+
 
 def handle_dns_request(client_socket):
     data = client_socket.recv(1024)
@@ -20,6 +22,7 @@ def handle_dns_request(client_socket):
 
     client_socket.sendall(response.encode())
     client_socket.close()
+
 
 # Inicie o servidor DNS
 dns_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
