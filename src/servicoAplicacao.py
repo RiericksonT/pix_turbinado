@@ -1,16 +1,22 @@
+##############
+# Precisamos colocar um mutex aqui nesse codigo eu acho
+##############
+
 # Código do servidor de aplicação
 import socket
 import re
+from time import sleep
+import geradorMensagem
 
 HOST = '127.0.0.1'
 PORT = 5000
-F = 15  # Tamanho fixo da mensagem em bytes
+F = 1024  # Tamanho fixo da mensagem em bytes
 
 HOST_DADOS = '127.0.0.1'
 PORT_DADOS = 6000
 
 # create a regex to validate the request, the format correct is "0|0|0|0000"
-request_mold = re.compile(r'^[1-4]\|[0-9]{2}\|[0-9]{2}\|[0-9]{8}$')
+request_mold = re.compile(r'^[1-4]\|[0-9]{1,8}\|[0-9]{2}\|[0-9]{8}$')
 
 
 def is_port_in_use(port):
@@ -25,15 +31,25 @@ def is_port_in_use(port):
 
 def handle_client_request(client_socket):
     # Lógica para processar as operações transacionais e acessar o servidor de dados
-    request = client_socket.recv(F).decode().strip()
-
+    request = client_socket.recv(1024).decode()
     # Processar a requisição e enviar a resposta, compare with request_mold
 
-    if request_mold.match(request):
-        print("Requisição recebida:", request)
+    if request_mold.match(request) and request.split('|')[0] == '1':
+        # editar isso para chamar a função certa no serviço de dados
+        response = geradorMensagem.gerador_msg(2, 0, 0)
+        client_socket.sendall(response.encode())
+
+    elif request_mold.match(request) and request.split('|')[0] == '3':
+        # editar isso para chamar a função certa no serviço de dados
+        sleep(10)
+        client_socket.sendall('Operation completed successfully'.encode())
+
+    elif request_mold.match(request) and request.split('|')[0] == '4':
+        # editar isso para chamar a função certa no serviço de dados
+        client_socket.sendall('cliente saiu'.encode())
 
     else:
-        response = "ERROR - Invalid request"
+        response = "ERROR - Invalid request" + (f'{request}')
         client_socket.sendall(response.encode())
         client_socket.close()
 

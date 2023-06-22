@@ -1,0 +1,2 @@
+#ignore __pycache__ folder
+global-exclude __pycache__

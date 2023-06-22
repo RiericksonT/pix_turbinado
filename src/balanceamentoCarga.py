@@ -2,7 +2,7 @@ import socket
 
 HOST = '127.0.0.1'
 PORT = 7000
-F = 15  # Tamanho fixo da mensagem em bytes
+F = 1024  # Tamanho fixo da mensagem em bytes
 
 # Lista de endereços de sockets
 socket_addresses = [
@@ -57,5 +57,5 @@ loadbalancer_server.listen()
 while True:
     # listen new connection
     client_socket, _ = loadbalancer_server.accept()
-    request = client_socket.recv(F).decode()
+    request = client_socket.recv(2048).decode()
     load_balancer(request, client_socket)
