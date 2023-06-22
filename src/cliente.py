@@ -6,6 +6,7 @@ import random
 DNS_HOST = '127.0.0.1'
 DNS_PORT = 53
 
+F = 25  # Tamanho fixo da mensagem em bytes
 op = 10
 rand_acc = random.randint(0, 99)
 rand_val = random.randint(0, 99999999)
@@ -16,7 +17,7 @@ def get_load_balancer_address(domain):
     dns_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     dns_socket.connect((DNS_HOST, DNS_PORT))
     dns_socket.sendall(domain.encode())
-    response = dns_socket.recv(1024).decode()
+    response = dns_socket.recv(F).decode()
     dns_socket.close()
     return response.split(':')
 
@@ -26,7 +27,7 @@ def send_request_to_load_balancer(address, request):
     lb_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     lb_socket.connect((address[0], int(address[1])))
     lb_socket.sendall(request.encode())
-    response = lb_socket.recv(2048).decode()
+    response = lb_socket.recv(F).decode()
     lb_socket.close()
     return response
 
