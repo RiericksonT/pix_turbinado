@@ -13,7 +13,3 @@ def gerador_msg(msg_id, conta_destino, valor):
     conta_destino = str(conta_destino).zfill(2)
     valor = str(valor).zfill(11)  # Valor da transferência (0 a 99999999999)
     return (msg_id + SEPARATOR + process_id + SEPARATOR + conta_destino + SEPARATOR + valor).zfill(F)
-
-
-msg = gerador_msg(1, 0, 0)
-print(msg, len(msg))
