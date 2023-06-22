@@ -1,2 +1,3 @@
 #ignore __pycache__ folder
 global-exclude __pycache__
+**/__pycache__/*
