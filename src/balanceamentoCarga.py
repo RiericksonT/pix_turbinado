@@ -2,6 +2,7 @@ import socket
 
 HOST = '127.0.0.1'
 PORT = 7000
+F = 15  # Tamanho fixo da mensagem em bytes
 
 # Lista de endereços de sockets
 socket_addresses = [
@@ -38,7 +39,7 @@ def send_request(socket_address, request, socket_requesting):
         sock.sendall(request.encode())
 
         # Recebe a resposta
-        response = sock.recv(1024).decode()
+        response = sock.recv(F).decode()
 
         # Envia a resposta para o socket que solicitou
         socket_requesting.sendall(response.encode())
@@ -56,5 +57,5 @@ loadbalancer_server.listen()
 while True:
     # listen new connection
     client_socket, _ = loadbalancer_server.accept()
-    request = client_socket.recv(1024).decode()
+    request = client_socket.recv(F).decode()
     load_balancer(request, client_socket)

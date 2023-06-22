@@ -4,6 +4,7 @@ import re
 
 HOST = '127.0.0.1'
 PORT = 5000
+F = 15  # Tamanho fixo da mensagem em bytes
 
 HOST_DADOS = '127.0.0.1'
 PORT_DADOS = 6000
@@ -24,7 +25,7 @@ def is_port_in_use(port):
 
 def handle_client_request(client_socket):
     # Lógica para processar as operações transacionais e acessar o servidor de dados
-    request = client_socket.recv(1024).decode().strip()
+    request = client_socket.recv(F).decode().strip()
 
     # Processar a requisição e enviar a resposta, compare with request_mold
 
