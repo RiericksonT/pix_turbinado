@@ -9,7 +9,7 @@ HOST_DADOS = '127.0.0.1'
 PORT_DADOS = 6000
 
 # create a regex to validate the request, the format correct is "0|0|0|0000"
-request_mold = re.compile(r'^[0-9]\|[0-9]{2}\|[0-9]{2}\|[0-9]{8}$')
+request_mold = re.compile(r'^[1-4]\|[0-9]{2}\|[0-9]{2}\|[0-9]{8}$')
 
 
 def is_port_in_use(port):
