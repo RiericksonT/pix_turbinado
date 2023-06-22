@@ -31,7 +31,7 @@ domain = input("Digite o domínio: ")
 lb_address = get_load_balancer_address(domain)
 
 # Envie uma solicitação para o balanceador de carga
-request = "GET /"
+request = "1|00|00|00000000"
 response = send_request_to_load_balancer(lb_address, request)
 
 # Processar a resposta
