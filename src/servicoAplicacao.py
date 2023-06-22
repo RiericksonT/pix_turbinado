@@ -1,7 +1,3 @@
-##############
-# Precisamos colocar um mutex aqui nesse codigo eu acho
-##############
-
 # Código do servidor de aplicação
 import socket
 import re
@@ -33,7 +29,6 @@ def handle_client_request(client_socket):
     # Lógica para processar as operações transacionais e acessar o servidor de dados
     request = client_socket.recv(1024).decode()
     # Processar a requisição e enviar a resposta, compare with request_mold
-
     if request_mold.match(request) and request.split('|')[0] == '1':
         # editar isso para chamar a função certa no serviço de dados
         response = geradorMensagem.gerador_msg(2, 0, 0)
