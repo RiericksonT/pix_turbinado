@@ -56,4 +56,5 @@ loadbalancer_server.listen()
 while True:
     # listen new connection
     client_socket, _ = loadbalancer_server.accept()
-    load_balancer('GET / HTTP/1.1', client_socket)
+    request = client_socket.recv(1024).decode()
+    load_balancer(request, client_socket)
