@@ -9,9 +9,10 @@ cursor = conn.cursor()
 
 HOST = '127.0.0.1'
 PORT = 10001
-F = 25  # Tamanho fixo da mensagem em bytes
+F = 28  # Tamanho fixo da mensagem em bytes
 
 quantity = 20
+
 
 def generate_accounts(quantity):
     accounts = []
@@ -30,6 +31,7 @@ def generate_accounts(quantity):
         print('Banco de dados populado com sucesso')
         conn.close()
 
+
 def login(message, edge_socket):
     conn = sqlite3.connect('./database/banco_de_dados.db')
     cursor = conn.cursor()
@@ -42,21 +44,37 @@ def login(message, edge_socket):
     cursor.execute(sql, dados_cliente)
     result = cursor.fetchall()
     if len(result) > 0:
-        edge_socket.sendall('7|1|0'.encode())
+        edge_socket.sendall('7|1|0|0'.encode())
         handle_client_request(edge_socket)
     else:
-        edge_socket.sendall('7|0|0'.encode())
+        edge_socket.sendall('7|0|0|0'.encode())
 
         edge_socket.close()
+
 
 def handle_client_request(client_socket):
     # Lógica para armazenar e recuperar os dados relevantes
     request = client_socket.recv(F).decode().strip()
+    msg_id, process_id, conta_origem, conta_destino, valor = request.split('|')
+    if msg_id == '3':
+        sql = "SELECT saldo FROM contas WHERE dono = ?"
+        dados_cliente = (conta_origem)
+        cursor.execute(sql, dados_cliente)
+        result = cursor.fetchall()
+        if result[0][0] >= int(valor):
+            sql = "UPDATE contas SET saldo = saldo - ? WHERE dono = ?"
+            dados_cliente = (valor, conta_origem)
+            cursor.execute(sql, dados_cliente)
+            conn.commit()
 
-    # Acessar o banco de dados e processar a requisição
-    # response = process_database_request(request)
-    # client_socket.sendall(response.encode())
-    # client_socket.close()
+            sql = "UPDATE contas SET saldo = saldo + ? WHERE dono = ?"
+            dados_cliente = (valor, conta_destino)
+            cursor.execute(sql, dados_cliente)
+            conn.commit()
+
+            client_socket.sendall('4|1|0|0'.encode())
+        else:
+            client_socket.sendall('8|0|0|0'.encode())
 
 
 # Inicie o servidor de dados

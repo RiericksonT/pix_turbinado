@@ -10,7 +10,7 @@ import geradorMensagem
 
 HOST = '127.0.0.1'
 PORT = 5000
-F = 25  # Tamanho fixo da mensagem em bytes
+F = 28  # Tamanho fixo da mensagem em bytes
 
 HOST_DADOS = '127.0.0.1'
 PORT_DADOS = 10001
@@ -32,7 +32,7 @@ def is_port_in_use(port):
 def handle_client_request(client_socket):
     # Lógica para processar as operações transacionais e acessar o servidor de dados
     request = client_socket.recv(F).decode()
-    
+
     # Processar a requisição e enviar a resposta, compare with request_mold
 
     if request_mold.match(request) and request.split('|')[0] == '1':
@@ -42,28 +42,35 @@ def handle_client_request(client_socket):
 
     elif request_mold.match(request) and request.split('|')[0] == '3':
         # editar isso para chamar a função certa no serviço de dados
-        sleep(10)
-        client_socket.sendall('Operation completed successfully'.encode())
+        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server_socket.connect((HOST_DADOS, PORT_DADOS))
+        response = server_socket.recv(F).decode()
+        server_socket.sendall(request.encode())
+        if response.split('|')[1] == '1':
+            client_socket.sendall(response.encode())
+
+        else:
+            client_socket.sendall('Saldo insuficiente!'.encode())
+            client_socket.close()
 
     elif request_mold.match(request) and request.split('|')[0] == '4':
         # editar isso para chamar a função certa no serviço de dados
         client_socket.sendall('cliente saiu'.encode())
 
     elif request_mold.match(request) and request.split('|')[0] == '7':
-        
+
         # editar isso para chamar a função certa no serviço de dados
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.connect((HOST_DADOS, PORT_DADOS))
         server_socket.sendall(request.encode())
         response = server_socket.recv(F).decode()
-        
+
         if response.split('|')[1] == '1':
             client_socket.sendall(response.encode())
-            
+
         else:
             client_socket.sendall('Login incorreto!'.encode())
             client_socket.close()
-            
 
     else:
         response = "ERROR - Invalid request" + (f'{request}')
