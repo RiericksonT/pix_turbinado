@@ -9,7 +9,7 @@ cursor = conn.cursor()
 
 HOST = '127.0.0.1'
 PORT = 10001
-F = 15  # Tamanho fixo da mensagem em bytes
+F = 25  # Tamanho fixo da mensagem em bytes
 
 quantity = 20
 

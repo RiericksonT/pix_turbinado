@@ -5,6 +5,8 @@ import socket
 HOST = '127.0.0.1'
 PORT = 53
 
+F = 25  # Tamanho fixo da mensagem em bytes
+
 dns_table = {
     # Exemplo de mapeamento de domínio para endereço IP e porta do balanceador de carga
     'www.example.com': ('127.0.0.1', 7000)
@@ -12,7 +14,7 @@ dns_table = {
 
 
 def handle_dns_request(client_socket):
-    data = client_socket.recv(1024)
+    data = client_socket.recv(F)
     domain = data.decode().strip()
 
     if domain in dns_table:
