@@ -10,7 +10,7 @@ import geradorMensagem
 
 HOST = '127.0.0.1'
 PORT = 5000
-F = 1024  # Tamanho fixo da mensagem em bytes
+F = 25  # Tamanho fixo da mensagem em bytes
 
 HOST_DADOS = '127.0.0.1'
 PORT_DADOS = 10001
@@ -31,7 +31,7 @@ def is_port_in_use(port):
 
 def handle_client_request(client_socket):
     # Lógica para processar as operações transacionais e acessar o servidor de dados
-    request = client_socket.recv(1024).decode()
+    request = client_socket.recv(F).decode()
     
     # Processar a requisição e enviar a resposta, compare with request_mold
 
@@ -54,9 +54,8 @@ def handle_client_request(client_socket):
         # editar isso para chamar a função certa no serviço de dados
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.connect((HOST_DADOS, PORT_DADOS))
-        print(f'client request - {request} - sent to data server {server_socket}')
         server_socket.sendall(request.encode())
-        response = server_socket.recv(1024).decode()
+        response = server_socket.recv(F).decode()
         
         if response.split('|')[1] == '1':
             client_socket.sendall(response.encode())

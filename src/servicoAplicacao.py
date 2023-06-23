@@ -33,7 +33,6 @@ def generate_accounts(quantity):
 def login(message, edge_socket):
     conn = sqlite3.connect('./database/banco_de_dados.db')
     cursor = conn.cursor()
-    print(f'login attempt - {message}')
 
     dono = message.split('|')[1]
     password = message.split('|')[2]
@@ -44,11 +43,10 @@ def login(message, edge_socket):
     result = cursor.fetchall()
     if len(result) > 0:
         edge_socket.sendall('7|1|0'.encode())
-        print(f'login success - {message}')
         handle_client_request(edge_socket)
     else:
         edge_socket.sendall('7|0|0'.encode())
-        print(f'login failed - {message}')
+
         edge_socket.close()
 
 def handle_client_request(client_socket):
@@ -56,9 +54,9 @@ def handle_client_request(client_socket):
     request = client_socket.recv(F).decode().strip()
 
     # Acessar o banco de dados e processar a requisição
-    response = process_database_request(request)
-    client_socket.sendall(response.encode())
-    client_socket.close()
+    # response = process_database_request(request)
+    # client_socket.sendall(response.encode())
+    # client_socket.close()
 
 
 # Inicie o servidor de dados
@@ -70,6 +68,6 @@ generate_accounts(quantity)
 
 while True:
     edge_socket, _ = data_server.accept()
-    message = edge_socket.recv(2048).decode()
-    print(f'Data server recive - {message}')
-    threading.Thread(target=login, args=(message, edge_socket)).start()
+    message = edge_socket.recv(F).decode()
+    if message.split('|')[0] == '7':
+        threading.Thread(target=login, args=(message, edge_socket)).start()
