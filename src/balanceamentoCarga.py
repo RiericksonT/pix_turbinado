@@ -36,10 +36,11 @@ def send_request(socket_address, request, socket_requesting):
         sock.connect(socket_address)
 
         # Envia a requisição
+        print(f'Enviando requisição {request} para {socket_address}')
         sock.sendall(request.encode())
 
         # Recebe a resposta
-        response = sock.recv(F).decode()
+        response = sock.recv(1024).decode()
 
         # Envia a resposta para o socket que solicitou
         socket_requesting.sendall(response.encode())

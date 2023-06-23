@@ -12,13 +12,13 @@ def run_balanceamentoCarga():
     subprocess.run(balanceamentoCarga, shell=True)
 
 
-def run_servicoAplicacao():
-    servicoAplicacao = "python ./src/servicoAplicacao.py"
+def run_edgeComputing():
+    servicoAplicacao = "python ./src/edgeComputing.py"
     subprocess.run(servicoAplicacao, shell=True)
 
 
-def run_servicoDados():
-    servicoDados = "python ./src/servicoDados.py"
+def run_servicoAplicacao():
+    servicoDados = "python ./src/servicoAplicacao.py"
     subprocess.run(servicoDados, shell=True)
 
 
@@ -26,9 +26,9 @@ server_thread = threading.Thread(target=run_dns)
 server_thread.start()
 server_thread = threading.Thread(target=run_balanceamentoCarga)
 server_thread.start()
-server_thread = threading.Thread(target=run_servicoAplicacao)
+server_thread = threading.Thread(target=run_edgeComputing)
+server_thread.start()
+server_thread = threading.Thread(target=run_edgeComputing)
 server_thread.start()
 server_thread = threading.Thread(target=run_servicoAplicacao)
-server_thread.start()
-server_thread = threading.Thread(target=run_servicoDados)
 server_thread.start()

@@ -13,10 +13,10 @@ PORT = 5000
 F = 1024  # Tamanho fixo da mensagem em bytes
 
 HOST_DADOS = '127.0.0.1'
-PORT_DADOS = 6000
+PORT_DADOS = 10001
 
 # create a regex to validate the request, the format correct is "0|0|0|0000"
-request_mold = re.compile(r'^[1-4]\|[0-9]{1,8}\|[0-9]{2}\|[0-9]{8}$')
+request_mold = re.compile(r'^[1-9]\|[0-9]{1,8}\|[0-9]{1,3}\|[0-9]{1,8}$')
 
 
 def is_port_in_use(port):
@@ -32,6 +32,7 @@ def is_port_in_use(port):
 def handle_client_request(client_socket):
     # Lógica para processar as operações transacionais e acessar o servidor de dados
     request = client_socket.recv(1024).decode()
+    
     # Processar a requisição e enviar a resposta, compare with request_mold
 
     if request_mold.match(request) and request.split('|')[0] == '1':
@@ -47,6 +48,23 @@ def handle_client_request(client_socket):
     elif request_mold.match(request) and request.split('|')[0] == '4':
         # editar isso para chamar a função certa no serviço de dados
         client_socket.sendall('cliente saiu'.encode())
+
+    elif request_mold.match(request) and request.split('|')[0] == '7':
+        
+        # editar isso para chamar a função certa no serviço de dados
+        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server_socket.connect((HOST_DADOS, PORT_DADOS))
+        print(f'client request - {request} - sent to data server {server_socket}')
+        server_socket.sendall(request.encode())
+        response = server_socket.recv(1024).decode()
+        
+        if response.split('|')[1] == '1':
+            client_socket.sendall(response.encode())
+            
+        else:
+            client_socket.sendall('Login incorreto!'.encode())
+            client_socket.close()
+            
 
     else:
         response = "ERROR - Invalid request" + (f'{request}')

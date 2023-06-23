@@ -37,19 +37,23 @@ domain = input("Digite o domínio: ")
 # Obtenha o endereço do balanceador de carga para o domínio especificado
 lb_address = get_load_balancer_address(domain)
 
-for i in range(0, op):
-    # Envie uma solicitação para o balanceador de carga
-    request = geradorMensagem.gerador_msg(1, 0, 0)
-    response = send_request_to_load_balancer(lb_address, request)
-    print(request)
+response = send_request_to_load_balancer(lb_address, '7|2|123|0')
+if response.split('|')[1] == "1":
+    for i in range(0, op):
+        # Envie uma solicitação para o balanceador de carga
+        request = geradorMensagem.gerador_msg(1, 0, 0)
+        response = send_request_to_load_balancer(lb_address, request)
+        print(request)
 
-    if response.split('|')[0] == "2":
-        operation = geradorMensagem.gerador_msg(3, rand_acc, rand_val)
-        response = send_request_to_load_balancer(lb_address, operation)
-        print(response)
-        exit_msg = geradorMensagem.gerador_msg(4, 0, 0)
-        response = send_request_to_load_balancer(lb_address, exit_msg)
-        print('saindo...')
-    else:
-        print("Não foi acessar a conta, por favor espere...")
-        continue
+        if response.split('|')[0] == "2":
+            operation = geradorMensagem.gerador_msg(3, rand_acc, rand_val)
+            response = send_request_to_load_balancer(lb_address, operation)
+            print(response)
+            exit_msg = geradorMensagem.gerador_msg(4, 0, 0)
+            response = send_request_to_load_balancer(lb_address, exit_msg)
+            print('saindo...')
+        else:
+            print("Não foi acessar a conta, por favor espere...")
+            continue
+else:
+    print("Não foi possível fazer login no servidor, por favor tente novamente mais tarde.")
