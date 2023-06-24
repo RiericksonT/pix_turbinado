@@ -16,7 +16,7 @@ HOST_DADOS = '127.0.0.1'
 PORT_DADOS = 10001
 
 # create a regex to validate the request, the format correct is "0|0|0|0000"
-request_mold = re.compile(r'^[1-9]\|[0-9]{1,8}\|[0-9]{1,3}\|[0-9]{1,8}$')
+request_mold = re.compile(r'^[1-9]\|[0-9]{1,8}\|[0-9]{1,3}\|[0-9]{1,11}$')
 
 
 def is_port_in_use(port):
@@ -36,9 +36,14 @@ def handle_client_request(client_socket):
     # Processar a requisição e enviar a resposta, compare with request_mold
 
     if request_mold.match(request) and request.split('|')[0] == '1':
-        # editar isso para chamar a função certa no serviço de dados
-        response = geradorMensagem.gerador_msg(2, 0, 0)
-        client_socket.sendall(response.encode())
+        #verify the logados array in the data service
+        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server_socket.connect((HOST_DADOS, PORT_DADOS))
+        server_socket.sendall(request.encode())
+
+        response = server_socket.recv(F).decode()
+        if response.split('|')[1] == '1':
+            client_socket.sendall(response.encode())
 
     elif request_mold.match(request) and request.split('|')[0] == '3':
         # editar isso para chamar a função certa no serviço de dados

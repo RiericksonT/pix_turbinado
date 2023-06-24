@@ -42,8 +42,9 @@ response = send_request_to_load_balancer(lb_address, '7|2|123|0')
 if response.split('|')[1] == "1":
     for i in range(0, op):
         # Envie uma solicitação para o balanceador de carga
-        request = geradorMensagem.gerador_msg(1, 0, 0)
+        request = geradorMensagem.gerador_msg(1, 1, 0)
         response = send_request_to_load_balancer(lb_address, request)
+        print(response)
 
         if response.split('|')[0] == "2":
             operation = geradorMensagem.gerador_msg(3, rand_acc, rand_val)

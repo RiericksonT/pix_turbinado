@@ -13,6 +13,8 @@ F = 25  # Tamanho fixo da mensagem em bytes
 
 quantity = 20
 
+logados = []
+
 def generate_accounts(quantity):
     accounts = []
     sql_verify = "SELECT * FROM contas"
@@ -43,6 +45,7 @@ def login(message, edge_socket):
     result = cursor.fetchall()
     if len(result) > 0:
         edge_socket.sendall('7|1|0'.encode())
+        logados.append(dono)
         handle_client_request(edge_socket)
     else:
         edge_socket.sendall('7|0|0'.encode())
@@ -51,7 +54,10 @@ def login(message, edge_socket):
 
 def handle_client_request(client_socket):
     # Lógica para armazenar e recuperar os dados relevantes
-    request = client_socket.recv(F).decode().strip()
+    res = '2|1|0'
+    client_socket.sendall(res.encode())
+    print('cliente logado')
+
 
     # Acessar o banco de dados e processar a requisição
     # response = process_database_request(request)
@@ -71,3 +77,9 @@ while True:
     message = edge_socket.recv(F).decode()
     if message.split('|')[0] == '7':
         threading.Thread(target=login, args=(message, edge_socket)).start()
+    elif message.split('|')[0] == '1' and message.split('|')[1] in logados:
+        threading.Thread(target=handle_client_request, args=(edge_socket,)).start()
+    else:
+        edge_socket.sendall('1|1|0'.encode())
+        edge_socket.close()
+        
