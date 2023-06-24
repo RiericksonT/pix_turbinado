@@ -6,7 +6,7 @@ import random
 DNS_HOST = '127.0.0.1'
 DNS_PORT = 53
 
-F = 25  # Tamanho fixo da mensagem em bytes
+F = 28  # Tamanho fixo da mensagem em bytes
 op = 10
 rand_acc = random.randint(0, 99)
 rand_val = random.randint(0, 99999999)
@@ -38,19 +38,20 @@ domain = input("Digite o domínio: ")
 # Obtenha o endereço do balanceador de carga para o domínio especificado
 lb_address = get_load_balancer_address(domain)
 
-response = send_request_to_load_balancer(lb_address, '7|2|123|0')
+response = send_request_to_load_balancer(lb_address, '7|2|123|0|0')
 if response.split('|')[1] == "1":
     for i in range(0, op):
         # Envie uma solicitação para o balanceador de carga
-        request = geradorMensagem.gerador_msg(1, 1, 0)
+        request = geradorMensagem.gerador_msg(1, 0, 0, 0)
         response = send_request_to_load_balancer(lb_address, request)
         print(response)
 
-        if response.split('|')[0] == "2":
-            operation = geradorMensagem.gerador_msg(3, rand_acc, rand_val)
+        if response.split('|')[1] == "1":
+            operation = geradorMensagem.gerador_msg(
+                3, rand_acc, rand_acc, rand_val)
             response = send_request_to_load_balancer(lb_address, operation)
             print(response)
-            exit_msg = geradorMensagem.gerador_msg(4, 0, 0)
+            exit_msg = geradorMensagem.gerador_msg(4, 0, 0, 0)
             response = send_request_to_load_balancer(lb_address, exit_msg)
             print('saindo...')
         else:

@@ -5,7 +5,7 @@ import socket
 HOST = '127.0.0.1'
 PORT = 53
 
-F = 25  # Tamanho fixo da mensagem em bytes
+F = 28  # Tamanho fixo da mensagem em bytes
 
 dns_table = {
     # Exemplo de mapeamento de domínio para endereço IP e porta do balanceador de carga
