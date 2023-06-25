@@ -10,7 +10,7 @@ import geradorMensagem
 
 HOST = '127.0.0.1'
 PORT = 5000
-F = 28  # Tamanho fixo da mensagem em bytes
+F = 2048  # Tamanho fixo da mensagem em bytes
 
 HOST_DADOS = '127.0.0.1'
 PORT_DADOS = 10001
@@ -41,7 +41,8 @@ def handle_client_request(client_socket):
         server_socket.connect((HOST_DADOS, PORT_DADOS))
         server_socket.sendall(request.encode())
 
-        response = server_socket.recv(F).decode()
+        response = server_socket.recv(2048).decode()
+        print(f'edge compute: {response}')
         if response.split('|')[1] == '1':
             client_socket.sendall(response.encode())
 
@@ -49,8 +50,10 @@ def handle_client_request(client_socket):
         # editar isso para chamar a função certa no serviço de dados
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.connect((HOST_DADOS, PORT_DADOS))
-        response = server_socket.recv(F).decode()
+        print(f'edge compute 2: {request}')
         server_socket.sendall(request.encode())
+        response = server_socket.recv(F).decode()
+        print(f'edge compute 3: {response}')
         if response.split('|')[1] == '1':
             client_socket.sendall(response.encode())
 

@@ -2,7 +2,7 @@ import socket
 
 HOST = '127.0.0.1'
 PORT = 7000
-F = 28  # Tamanho fixo da mensagem em bytes
+F = 2048  # Tamanho fixo da mensagem em bytes
 
 # Lista de endereços de sockets
 socket_addresses = [

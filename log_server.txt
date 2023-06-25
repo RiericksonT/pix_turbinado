@@ -9,3 +9,242 @@ Accounts already generated
 Accounts already generated
 2 with 123 access account
 2 with 123 access account
+Accounts already generated
+Accounts already generated
+2 with 123 access account
+Accounts already generated
+Accounts already generated
+2 with 123 access account
+Accounts already generated
+Accounts already generated
+2 with 123 access account
+Accounts already generated
+2 with 123 access account
+Accounts already generated
+2 with 123 access account
+Accounts already generated
+2 with 123 access account
+Accounts already generated
+2 with 123 access account
+Accounts already generated
+Accounts already generated
+Accounts already generated
+Accounts already generated
+Accounts already generated
+Accounts already generated
+2 with 123 access account
+Accounts already generated
+Accounts already generated
+2 with 123 access account
+Client 00020784 solicitou acesso ao servidor
+Accounts already generated
+2 with 123 access account
+Client 00014800 solicitou acesso ao servidor
+Accounts already generated
+2 with 123 access account
+Client 00014036 solicitou acesso ao servidor
+Accounts already generated
+2 with 123 access account
+Client 00008420 solicitou acesso ao servidor
+Accounts already generated
+2 with 123 access account
+Client 00005176 solicitou acesso ao servidor
+Accounts already generated
+2 with 123 access account
+Client 00020236 solicitou acesso ao servidor
+Accounts already generated
+2 with 123 access account
+Client 00020068 solicitou acesso ao servidor
+Client 00020068 has access to make op at 2023-06-24 21:20:42.179968
+Accounts already generated
+Accounts already generated
+Accounts already generated
+Accounts already generated
+Accounts already generated
+2 with 123 access account
+Client 00017852 solicitou acesso ao servidor
+Client 00017852 has access to make op at 2023-06-24 21:24:24.309406
+Accounts already generated
+2 with 123 access account
+Client 00012340 solicitou acesso ao servidor
+Client 00012340 has access to make op at 2023-06-24 21:27:30.309308
+Accounts already generated
+2 with 123 access account
+Client 00020148 solicitou acesso ao servidor
+Client 00020148 has access to make op at 2023-06-24 21:30:09.340856
+Accounts already generated
+Client 00009640 solicitou acesso ao servidor
+Client 00009640 has access to make op at 2023-06-24 21:33:15.839115
+2 with 123 access account
+Accounts already generated
+Client 00008080 solicitou acesso ao servidor
+2 with 123 access account
+Client 00008080 has access to make op at 2023-06-24 21:36:53.945723
+Accounts already generated
+2 with 123 access account
+Client 00007812 solicitou acesso ao servidor
+Client 00007812 has access to make op at 2023-06-24 21:38:32.099362
+Accounts already generated
+2 with 123 access account
+Client 00016560 solicitou acesso ao servidor
+Client 00016560 has access to make op at 2023-06-24 21:40:01.072135
+Accounts already generated
+2 with 123 access account
+Client 00011316 solicitou acesso ao servidor
+Client 00011316 has access to make op at 2023-06-25 12:10:09.389762
+Accounts already generated
+2 with 123 access account
+Client 00019284 solicitou acesso ao servidor
+Client 00019284 has access to make op at 2023-06-25 12:11:03.469008
+Accounts already generated
+2 with 123 access account
+Client 00005084 solicitou acesso ao servidor
+Client 00005084 has access to make op at 2023-06-25 12:12:04.457755
+Accounts already generated
+Client 00015716 solicitou acesso ao servidor
+2 with 123 access account
+Client 00015716 has access to make op at 2023-06-25 12:12:21.581755
+Accounts already generated
+2 with 123 access account
+Client 00004632 solicitou acesso ao servidor
+Client 00004632 has access to make op at 2023-06-25 12:13:34.889118
+Accounts already generated
+Accounts already generated
+2 with 123 access account
+Client 00002316 solicitou acesso ao servidor
+Client 00002316 has access to make op at 2023-06-25 12:15:00.423878
+Accounts already generated
+2 with 123 access account
+Client 00007940 solicitou acesso ao servidor
+Client 00007940 has access to make op at 2023-06-25 12:17:58.987164
+Accounts already generated
+Client 00014320 solicitou acesso ao servidor
+2 with 123 access account
+Client 00014320 has access to make op at 2023-06-25 12:22:01.030655
+Accounts already generated
+2 with 123 access account
+Client 00017200 solicitou acesso ao servidor
+Client 00017200 has access to make op at 2023-06-25 12:26:21.859760
+Accounts already generated
+2 with 123 access account
+Client 00014064 solicitou acesso ao servidor
+Client 00014064 has access to make op at 2023-06-25 12:27:17.574175
+Accounts already generated
+2 with 123 access account
+Client 00015816 solicitou acesso ao servidor
+Client 00015816 has access to make op at 2023-06-25 12:27:33.591917
+Accounts already generated
+2 with 123 access account
+Client 00010624 solicitou acesso ao servidor
+Client 00010624 has access to make op at 2023-06-25 12:28:10.784857
+Client 00010624 solicitou acesso ao servidor
+Client 00010624 has access to make op at 2023-06-25 12:28:11.134851
+Client 00010624 solicitou acesso ao servidor
+Client 00010624 has access to make op at 2023-06-25 12:28:11.653847
+Client 00010624 solicitou acesso ao servidor
+Client 00010624 has access to make op at 2023-06-25 12:28:12.063857
+Client 00010624 solicitou acesso ao servidor
+Client 00010624 has access to make op at 2023-06-25 12:28:12.485836
+Client 00010624 solicitou acesso ao servidor
+Client 00010624 has access to make op at 2023-06-25 12:28:12.891857
+Client 00010624 solicitou acesso ao servidor
+Client 00010624 has access to make op at 2023-06-25 12:28:13.297831
+Client 00010624 solicitou acesso ao servidor
+Client 00010624 has access to make op at 2023-06-25 12:28:13.750847
+Client 00010624 solicitou acesso ao servidor
+Client 00010624 has access to make op at 2023-06-25 12:28:14.218837
+Client 00010624 solicitou acesso ao servidor
+Client 00010624 has access to make op at 2023-06-25 12:28:14.672837
+Accounts already generated
+Client 00010888 solicitou acesso ao servidor
+2 with 123 access account
+Client 00010888 has access to make op at 2023-06-25 12:29:26.296374
+15 transfered 00015309158 to 15
+15 received 00015309158 from 15
+Client 00010888 solicitou acesso ao servidor
+Client 00010888 has access to make op at 2023-06-25 12:29:27.036383
+Accounts already generated
+2 with 123 access account
+Client 00018784 solicitou acesso ao servidor
+Client 00018784 has access to make op at 2023-06-25 12:29:52.887806
+Accounts already generated
+Accounts already generated
+Client 00010548 solicitou acesso ao servidor
+Client 00010548 has access to make op at 2023-06-25 12:32:01.078868
+Client 00010548 solicitou acesso ao servidor
+Client 00010548 has access to make op at 2023-06-25 12:32:01.592895
+13 transfered 00053071229 to 13
+13 received 00053071229 from 13
+Client 00010548 solicitou acesso ao servidor
+Client 00010548 has access to make op at 2023-06-25 12:32:02.280883
+Client 00010548 solicitou acesso ao servidor
+Client 00010548 has access to make op at 2023-06-25 12:32:02.764895
+Client 00010548 solicitou acesso ao servidor
+Client 00010548 has access to make op at 2023-06-25 12:32:03.189874
+Client 00010548 solicitou acesso ao servidor
+Client 00010548 has access to make op at 2023-06-25 12:32:03.742892
+19 transfered 00053902273 to 19
+19 received 00053902273 from 19
+Client 00010548 solicitou acesso ao servidor
+Client 00010548 has access to make op at 2023-06-25 12:32:04.424899
+Client 00010548 solicitou acesso ao servidor
+Client 00010548 has access to make op at 2023-06-25 12:32:04.914921
+16 transfered 00005647443 to 16
+16 received 00005647443 from 16
+Client 00010548 solicitou acesso ao servidor
+Client 00010548 has access to make op at 2023-06-25 12:32:05.630911
+Client 00010548 solicitou acesso ao servidor
+Client 00010548 has access to make op at 2023-06-25 12:32:06.105890
+Accounts already generated
+2 with 123 access account
+Client 00002800 solicitou acesso ao servidor
+Accounts already generated
+2 with 123 access account
+Client 00008812 solicitou acesso ao servidor
+Accounts already generated
+2 with 123 access account
+Client 00011880 solicitou acesso ao servidor
+Accounts already generated
+Accounts already generated
+2 with 123 access account
+Client 00014216 solicitou acesso ao servidor
+Accounts already generated
+Accounts already generated
+2 with 123 access account
+Client 00006332 solicitou acesso ao servidor
+Accounts already generated
+Client 00013744 solicitou acesso ao servidor
+2 with 123 access account
+Accounts already generated
+2 with 123 access account
+Client 00008992 solicitou acesso ao servidor
+Accounts already generated
+2 with 123 access account
+Client 00010972 solicitou acesso ao servidor
+Client 00010972 has access to make op at 2023-06-25 12:48:36.611774
+Client 00010972 solicitou acesso ao servidor
+Client 00010972 has access to make op at 2023-06-25 12:48:36.972768
+19 transfered 00052360192 to 09
+09 received 00052360192 from 19
+Client 00010972 solicitou acesso ao servidor
+Client 00010972 has access to make op at 2023-06-25 12:48:37.743769
+Client 00010972 solicitou acesso ao servidor
+Client 00010972 has access to make op at 2023-06-25 12:48:38.197769
+Client 00010972 solicitou acesso ao servidor
+Client 00010972 has access to make op at 2023-06-25 12:48:38.575777
+Client 00010972 solicitou acesso ao servidor
+Client 00010972 has access to make op at 2023-06-25 12:48:39.015772
+Client 00010972 solicitou acesso ao servidor
+Client 00010972 has access to make op at 2023-06-25 12:48:39.419768
+Client 00010972 solicitou acesso ao servidor
+Client 00010972 has access to make op at 2023-06-25 12:48:39.825779
+Client 00010972 solicitou acesso ao servidor
+Client 00010972 has access to make op at 2023-06-25 12:48:40.265776
+Client 00010972 solicitou acesso ao servidor
+Client 00010972 has access to make op at 2023-06-25 12:48:40.686772
+Accounts already generated
+2 with 123 access account
+Client 00012156 solicitou acesso ao servidor
+Client 00012156 has access to make op at 2023-06-25 12:53:20.891543
+2 with 123 access account
+Client 00002988 solicitou acesso ao servidor
