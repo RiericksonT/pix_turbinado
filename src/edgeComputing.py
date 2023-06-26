@@ -63,6 +63,9 @@ def handle_client_request(client_socket):
 
     elif request_mold.match(request) and request.split('|')[0] == '4':
         # editar isso para chamar a função certa no serviço de dados
+        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server_socket.connect((HOST_DADOS, PORT_DADOS))
+        server_socket.sendall(request.encode())
         client_socket.sendall('cliente saiu'.encode())
 
     elif request_mold.match(request) and request.split('|')[0] == '7':

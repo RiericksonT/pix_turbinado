@@ -12,12 +12,19 @@ HOST = '127.0.0.1'
 PORT = 10001
 F = 2048  # Tamanho fixo da mensagem em bytes
 
+# Inicie o servidor de dados
+data_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+data_server.bind((HOST, PORT))
+data_server.listen()
+
 quantity = 20
 
 logados = []
 
 queue = []
 accessing_now = None
+
+lock = threading.Lock()
 
 class Semaphore:
     def __init__(self, value):
@@ -47,7 +54,7 @@ def read_file(id):
         # count how many times the server was accessed by the client
         count = 0
         for line in file:
-            if line.split()[1] == id and line.split()[3] == 'access':
+            if line.split()[0] == id:
                 count += 1
         return (f'Account {id} was accessed {count} times')
     
@@ -147,21 +154,23 @@ def send_pix(client_socket, message):
             write_file(f'{conta_destino} received {valor} from {conta_origem}\n')
             client_socket.sendall('4|1|0|0'.encode())
         else:
+            write_file(f'{conta_origem} failed to transfer {valor} to {conta_destino}\n')
             client_socket.sendall('8|0|0|0'.encode())
 
 def handle_client_request(message, edge_socket):
+
     global queue
     global accessing_now
     # Lógica para armazenar e recuperar os dados relevantes
     print(f'Handling client request: {message}')
     if message.split('|')[0] == '1':
-        if message.split('|')[1] not in queue:
-            queue.append(message.split('|')[1])
+        queue.append(edge_socket)
         print(f'Queue: {queue} and accessing now: {accessing_now}')
+        print(f'Client {message.split("|")[1]} has been added to the queue')
         write_file(
             f"Client {message.split('|')[1]} solicitou acesso ao servidor\n")
 
-        while accessing_now != message.split('|')[1]:
+        while accessing_now != edge_socket:
             continue
 
         if edge_socket:
@@ -179,13 +188,7 @@ def handle_client_request(message, edge_socket):
         accessing_now = None
 
     elif message.split('|')[0] == '7':
-        threading.Thread(target=login, args=(message, edge_socket)).start()
-
-
-# Inicie o servidor de dados
-data_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-data_server.bind((HOST, PORT))
-data_server.listen()
+        login(message, edge_socket)
 
 threading.Thread(target=exc_mut).start()
 threading.Thread(target=terminal).start()

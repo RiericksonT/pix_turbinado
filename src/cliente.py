@@ -1,4 +1,5 @@
 import socket
+import time
 import geradorMensagem
 import random
 
@@ -33,20 +34,20 @@ def send_request_to_load_balancer(address, request):
 
 # Solicite o domínio ao usuário
 domain = input("Digite o domínio: ")
-
+rand_acc = random.randint(0, 20)
 # Obtenha o endereço do balanceador de carga para o domínio especificado
 lb_address = get_load_balancer_address(domain)
 
-response = send_request_to_load_balancer(lb_address, '7|2|123|0|0')
+response = send_request_to_load_balancer(lb_address, f'7|{rand_acc}|123|0|0')
 print(response)
 if response.split('|')[1] == "1":
     for i in range(0, op):
-        rand_acc = random.randint(0, 20)
-        rand_acc2 = random.randint(0, 20)
+        a = random.randint(0, 20)
+        rand_acc2 = a if rand_acc == a else rand_acc + 1 if rand_acc < 20 else rand_acc - 1
         rand_val = random.randint(0, 99999999)
         # Envie uma solicitação para o balanceador de carga
         request = geradorMensagem.gerador_msg(1, 0, 0, 0)
-        print(request)
+        print(f'my request: {request}')
         response = send_request_to_load_balancer(lb_address, request)
         print(f'Respostas depois de solicitar acesso {response}')
 
@@ -56,9 +57,10 @@ if response.split('|')[1] == "1":
             print(f'operacao {operation}')
             response = send_request_to_load_balancer(lb_address, operation)
             print(f'resposta dps da operação {response}')
+            time.sleep(1)
             exit_msg = geradorMensagem.gerador_msg(4, 0, 0, 0)
             response = send_request_to_load_balancer(lb_address, exit_msg)
-            print('saindo...')
+            print(f'Saindo... {response}')
         else:
             print("Não foi acessar a conta, por favor espere...")
             continue
