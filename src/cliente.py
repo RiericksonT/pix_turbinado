@@ -57,7 +57,7 @@ if response.split('|')[1] == "1":
             print(f'operacao {operation}')
             response = send_request_to_load_balancer(lb_address, operation)
             print(f'resposta dps da operação {response}')
-            time.sleep(1)
+            time.sleep(5)
             exit_msg = geradorMensagem.gerador_msg(4, 0, 0, 0)
             response = send_request_to_load_balancer(lb_address, exit_msg)
             print(f'Saindo... {response}')

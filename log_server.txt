@@ -828,3 +828,223 @@ Client 00005728 has access to make op at 2023-06-26 16:34:23.200623
 14 failed to transfer 00054906291 to 15
 5 with 123 access account
 Client 00024972 solicitou acesso ao servidor
+Accounts already generated
+12 with 123 access account
+Accounts already generated
+10 with 123 access account
+Accounts already generated
+9 with 123 access account
+Accounts already generated
+5 with 123 access account
+Client 00021336 solicitou acesso ao servidor
+Client 00021336 has access to make op at 2023-06-27 14:28:00.911270
+05 failed to transfer 00085901854 to 06
+16 with 123 access account
+Client 00022800 solicitou acesso ao servidor
+Accounts already generated
+12 with 123 access account
+Client 00014400 solicitou acesso ao servidor
+Client 00014400 has access to make op at 2023-06-27 14:31:18.646247
+12 failed to transfer 00058799596 to 13
+10 with 123 access account
+Client 00026440 solicitou acesso ao servidor
+Accounts already generated
+Accounts already generated
+15 with 123 access account
+Client 00004060 solicitou acesso ao servidor
+Client 00004060 has access to make op at 2023-06-27 14:36:31.743498
+15 failed to transfer 00038459342 to 16
+4 with 123 access account
+Client 00025528 solicitou acesso ao servidor
+Accounts already generated
+3 with 123 access account
+Client 00008912 solicitou acesso ao servidor
+Client 00008912 has access to make op at 2023-06-27 14:38:51.588113
+03 failed to transfer 00035174464 to 04
+4 with 123 access account
+Client 00006160 solicitou acesso ao servidor
+Accounts already generated
+Accounts already generated
+6 with 123 access account
+Client 00024312 solicitou acesso ao servidor
+Client 00024312 has access to make op at 2023-06-27 14:40:36.781656
+06 failed to transfer 00044242023 to 07
+Client 00024312 has left the critical region at 2023-06-27 14:40:38.137860
+Client 00024312 solicitou acesso ao servidor
+Client 00024312 has access to make op at 2023-06-27 14:40:38.326863
+06 failed to transfer 00021303536 to 07
+Client 00024312 has left the critical region at 2023-06-27 14:40:39.759867
+Client 00024312 solicitou acesso ao servidor
+Client 00024312 has access to make op at 2023-06-27 14:40:39.980869
+06 failed to transfer 00021006840 to 07
+Client 00024312 has left the critical region at 2023-06-27 14:40:41.369868
+Client 00024312 solicitou acesso ao servidor
+Client 00024312 has access to make op at 2023-06-27 14:40:41.510891
+06 failed to transfer 00091893706 to 07
+Client 00024312 has left the critical region at 2023-06-27 14:40:42.927177
+Client 00024312 solicitou acesso ao servidor
+Client 00024312 has access to make op at 2023-06-27 14:40:43.115176
+06 failed to transfer 00054509982 to 07
+Client 00024312 has left the critical region at 2023-06-27 14:40:44.531181
+Client 00024312 solicitou acesso ao servidor
+Client 00024312 has access to make op at 2023-06-27 14:40:44.811169
+06 failed to transfer 00040105262 to 07
+Client 00024312 has left the critical region at 2023-06-27 14:40:46.277188
+Client 00024312 solicitou acesso ao servidor
+Client 00024312 has access to make op at 2023-06-27 14:40:46.480182
+06 failed to transfer 00063342707 to 07
+Client 00024312 has left the critical region at 2023-06-27 14:40:48.027398
+Client 00024312 solicitou acesso ao servidor
+Client 00024312 has access to make op at 2023-06-27 14:40:48.231399
+06 failed to transfer 00065007982 to 07
+Client 00024312 has left the critical region at 2023-06-27 14:40:49.591378
+Client 00024312 solicitou acesso ao servidor
+Client 00024312 has access to make op at 2023-06-27 14:40:49.729612
+06 failed to transfer 00076240121 to 07
+Client 00024312 has left the critical region at 2023-06-27 14:40:51.210052
+Client 00024312 solicitou acesso ao servidor
+Client 00024312 has access to make op at 2023-06-27 14:40:51.415057
+06 failed to transfer 00040102442 to 07
+Client 00024312 has left the critical region at 2023-06-27 14:40:52.846007
+7 with 123 access account
+Client 00016084 solicitou acesso ao servidor
+Client 00016084 has access to make op at 2023-06-27 14:40:57.181157
+07 failed to transfer 00027501994 to 08
+Client 00016084 has left the critical region at 2023-06-27 14:40:58.579165
+Client 00016084 solicitou acesso ao servidor
+Client 00016084 has access to make op at 2023-06-27 14:40:58.701159
+07 failed to transfer 00089119086 to 08
+Client 00016084 has left the critical region at 2023-06-27 14:41:00.121076
+Client 00016084 solicitou acesso ao servidor
+Client 00016084 has access to make op at 2023-06-27 14:41:00.340077
+07 failed to transfer 00038882170 to 08
+Client 00016084 has left the critical region at 2023-06-27 14:41:01.794076
+Client 00016084 solicitou acesso ao servidor
+Client 00016084 has access to make op at 2023-06-27 14:41:01.963075
+15 with 123 access account
+07 failed to transfer 00028705682 to 08
+Client 00023572 solicitou acesso ao servidor
+Accounts already generated
+Accounts already generated
+17 with 123 access account
+Client 00025764 solicitou acesso ao servidor
+Client 00025764 has access to make op at 2023-06-27 14:42:22.164172
+17 failed to transfer 00018702566 to 18
+Client 00025764 has left the critical region at 2023-06-27 14:42:23.595176
+Client 00025764 solicitou acesso ao servidor
+Client 00025764 has access to make op at 2023-06-27 14:42:23.796167
+17 failed to transfer 00089931691 to 18
+Client 00025764 has left the critical region at 2023-06-27 14:42:25.238167
+Client 00025764 solicitou acesso ao servidor
+Client 00025764 has access to make op at 2023-06-27 14:42:25.457183
+17 failed to transfer 00099889004 to 18
+Client 00025764 has left the critical region at 2023-06-27 14:42:26.945177
+Client 00025764 solicitou acesso ao servidor
+Client 00025764 has access to make op at 2023-06-27 14:42:27.222164
+17 failed to transfer 00088991046 to 18
+3 with 123 access account
+Client 00004772 solicitou acesso ao servidor
+Accounts already generated
+9 with 123 access account
+Client 00014128 solicitou acesso ao servidor
+Client 00014128 has access to make op at 2023-06-27 14:45:24.125791
+09 failed to transfer 00079896818 to 10
+Client 00014128 has left the critical region at 2023-06-27 14:45:25.522803
+Client 00014128 solicitou acesso ao servidor
+Client 00014128 has access to make op at 2023-06-27 14:45:25.690792
+09 failed to transfer 00001728950 to 10
+Client 00014128 has left the critical region at 2023-06-27 14:45:27.253809
+Client 00014128 solicitou acesso ao servidor
+Client 00014128 has access to make op at 2023-06-27 14:45:27.427819
+09 failed to transfer 00093466066 to 10
+Client 00014128 has left the critical region at 2023-06-27 14:45:28.926792
+Client 00014128 solicitou acesso ao servidor
+Client 00014128 has access to make op at 2023-06-27 14:45:29.145800
+09 failed to transfer 00055564359 to 10
+Client 00014128 has left the critical region at 2023-06-27 14:45:30.587882
+Client 00014128 solicitou acesso ao servidor
+Client 00014128 has access to make op at 2023-06-27 14:45:30.775883
+09 failed to transfer 00091668001 to 10
+Client 00014128 has left the critical region at 2023-06-27 14:45:32.193575
+Client 00014128 solicitou acesso ao servidor
+Client 00014128 has access to make op at 2023-06-27 14:45:32.433588
+09 failed to transfer 00027277473 to 10
+Client 00014128 has left the critical region at 2023-06-27 14:45:33.883756
+Client 00014128 solicitou acesso ao servidor
+Client 00014128 has access to make op at 2023-06-27 14:45:34.022758
+09 failed to transfer 00018751813 to 10
+Client 00014128 has left the critical region at 2023-06-27 14:45:35.483063
+Client 00014128 solicitou acesso ao servidor
+Client 00014128 has access to make op at 2023-06-27 14:45:35.606508
+09 failed to transfer 00046476585 to 10
+Client 00014128 has left the critical region at 2023-06-27 14:45:36.994590
+Client 00014128 solicitou acesso ao servidor
+Client 00014128 has access to make op at 2023-06-27 14:45:37.166585
+09 failed to transfer 00058956789 to 10
+Client 00014128 has left the critical region at 2023-06-27 14:45:38.666202
+Client 00014128 solicitou acesso ao servidor
+Client 00014128 has access to make op at 2023-06-27 14:45:38.838941
+09 failed to transfer 00098949487 to 10
+Client 00014128 has left the critical region at 2023-06-27 14:45:40.230968
+Accounts already generated
+9 with 123 access account
+Client 00007652 solicitou acesso ao servidor
+Client 00007652 has access to make op at 2023-06-29 15:53:41.757836
+09 failed to transfer 00076978116 to 10
+6 with 123 access account
+Client 00019332 solicitou acesso ao servidor
+Accounts already generated
+2 with 123 access account
+Client 00017132 solicitou acesso ao servidor
+Accounts already generated
+13 with 123 access account
+Client 00019408 solicitou acesso ao servidor
+Accounts already generated
+5 with 123 access account
+Client 00012024 solicitou acesso ao servidor
+Client 00012024 has access to make op at 2023-06-29 16:01:15.148943
+05 failed to transfer 00014189150 to 06
+Client 00012024 has left the critical region at 2023-06-29 16:01:16.574955
+Client 00012024 solicitou acesso ao servidor
+Client 00012024 has access to make op at 2023-06-29 16:01:16.762966
+05 failed to transfer 00077733155 to 06
+4 with 123 access account
+Client 00013552 solicitou acesso ao servidor
+Accounts already generated
+Accounts already generated
+0 with 123 access account
+Client 00018720 solicitou acesso ao servidor
+Client 00018720 has access to make op at 2023-06-29 16:07:47.486543
+00 failed to transfer 00027266718 to 01
+11 with 123 access account
+Client 00009212 solicitou acesso ao servidor
+Accounts already generated
+Accounts already generated
+7 with 123 access account
+Client 00009780 solicitou acesso ao servidor
+Client 00009780 has access to make op at 2023-07-02 18:50:49.672976
+07 failed to transfer 00051884771 to 08
+17 with 123 access account
+Client 00001008 solicitou acesso ao servidor
+Accounts already generated
+18 with 123 access account
+Client 00015732 solicitou acesso ao servidor
+Client 00015732 has access to make op at 2023-07-02 18:52:47.757690
+18 failed to transfer 00034349747 to 19
+1 with 123 access account
+Client 00001008 solicitou acesso ao servidor
+Client 00001008 has access to make op at 2023-07-02 18:52:51.303906
+01 failed to transfer 00015551915 to 02
+Client 00015732 has left the critical region at 2023-07-02 18:52:52.776560
+Client 00015732 solicitou acesso ao servidor
+Client 00015732 has access to make op at 2023-07-02 18:52:52.780560
+18 failed to transfer 00076373565 to 19
+Client 00001008 has left the critical region at 2023-07-02 18:52:56.317141
+Client 00001008 solicitou acesso ao servidor
+Client 00001008 has access to make op at 2023-07-02 18:52:56.321138
+01 failed to transfer 00004595749 to 02
+Client 00015732 has left the critical region at 2023-07-02 18:52:57.803779
+Client 00015732 solicitou acesso ao servidor
+Client 00015732 has access to make op at 2023-07-02 18:52:57.808780
+18 transfered 00011048970 to 19
+19 received 00011048970 from 18

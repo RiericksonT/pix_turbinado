@@ -42,7 +42,8 @@ class Semaphore:
         self.value += 1
 
 
-semaphore = Semaphore(1)
+access_semaphore = threading.Semaphore(1)
+
 
 def write_file(text):
     with open('log_server.txt', 'a') as file:
@@ -58,14 +59,14 @@ def read_file(id):
                 count += 1
         return (f'Account {id} was accessed {count} times')
     
-def exc_mut():
-    global accessing_now
-    while True:
-        if len(queue) > 0:
-            if accessing_now is None:
-                semaphore.acquire()
-                accessing_now = queue.pop(0)
-                semaphore.release()
+# def exc_mut():
+#     global accessing_now
+#     while True:
+#         if len(queue) > 0:
+#             if accessing_now is None:
+#                 access_semaphore.acquire()
+#                 accessing_now = queue[0]
+#                 access_semaphore.release()
 
 def terminal():
     global queue
@@ -164,20 +165,21 @@ def handle_client_request(message, edge_socket):
     # Lógica para armazenar e recuperar os dados relevantes
     print(f'Handling client request: {message}')
     if message.split('|')[0] == '1':
-        queue.append(edge_socket)
+        queue.append(message.split('|')[1])
         print(f'Queue: {queue} and accessing now: {accessing_now}')
         print(f'Client {message.split("|")[1]} has been added to the queue')
         write_file(
             f"Client {message.split('|')[1]} solicitou acesso ao servidor\n")
 
-        while accessing_now != edge_socket:
-            continue
+        # while accessing_now != queue[0]:
+        #     continue
 
-        if edge_socket:
-            write_file(
-                f"Client {message.split('|')[1]} has access to make op at {datetime.datetime.now()}\n")
-            edge_socket.send(f'2|1|00'.encode('utf-8'))
-            edge_socket.close()
+
+        # if accessing_now == message.split('|')[1]:
+        write_file(
+            f"Client {message.split('|')[1]} has access to make op at {datetime.datetime.now()}\n")
+        edge_socket.send(f'2|1|00'.encode('utf-8'))
+        edge_socket.close()
     elif message.split('|')[0] == '3':
         print(f'PIX: {message}')
         send_pix(edge_socket, message)
@@ -186,11 +188,12 @@ def handle_client_request(message, edge_socket):
         write_file(
             f"Client {message.split('|')[1]} has left the critical region at {datetime.datetime.now()}\n")
         accessing_now = None
+        queue.pop(0)
 
     elif message.split('|')[0] == '7':
         login(message, edge_socket)
 
-threading.Thread(target=exc_mut).start()
+# threading.Thread(target=exc_mut).start()
 threading.Thread(target=terminal).start()
 generate_accounts(quantity)
 

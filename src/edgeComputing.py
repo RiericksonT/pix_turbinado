@@ -1,12 +1,8 @@
-##############
-# Precisamos colocar um mutex aqui nesse codigo eu acho
-##############
-
-# Código do servidor de aplicação
 import socket
 import re
 from time import sleep
 import geradorMensagem
+import threading  # Importar o módulo threading para usar mutex
 
 HOST = '127.0.0.1'
 PORT = 5000
@@ -15,8 +11,9 @@ F = 2048  # Tamanho fixo da mensagem em bytes
 HOST_DADOS = '127.0.0.1'
 PORT_DADOS = 10001
 
-# create a regex to validate the request"
 request_mold = re.compile(r'^[1-9]\|[0-9]{1,8}\|[0-9]{1,3}\|[0-9]{1,3}\|[0-9]{1,11}$')
+
+mutex = threading.Lock()  # Inicializar o mutex
 
 
 def is_port_in_use(port):
@@ -30,13 +27,11 @@ def is_port_in_use(port):
 
 
 def handle_client_request(client_socket):
-    # Lógica para processar as operações transacionais e acessar o servidor de dados
     request = client_socket.recv(F).decode()
 
-    # Processar a requisição e enviar a resposta, compare with request_mold
-
     if request_mold.match(request) and request.split('|')[0] == '1':
-        #verify the logados array in the data service
+        mutex.acquire()  # Adquirir o mutex antes de acessar o servidor de dados
+
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.connect((HOST_DADOS, PORT_DADOS))
         server_socket.sendall(request.encode())
@@ -46,8 +41,13 @@ def handle_client_request(client_socket):
         if response.split('|')[1] == '1':
             client_socket.sendall(response.encode())
 
+        server_socket.close()
+
+        mutex.release()  # Liberar o mutex após acessar o servidor de dados
+
     elif request_mold.match(request) and request.split('|')[0] == '3':
-        # editar isso para chamar a função certa no serviço de dados
+        mutex.acquire()  # Adquirir o mutex antes de acessar o servidor de dados
+
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.connect((HOST_DADOS, PORT_DADOS))
         print(f'edge compute 2: {request}')
@@ -56,21 +56,29 @@ def handle_client_request(client_socket):
         print(f'edge compute 3: {response}')
         if response.split('|')[1] == '1':
             client_socket.sendall(response.encode())
-
         else:
             client_socket.sendall('Saldo insuficiente!'.encode())
             client_socket.close()
 
+        server_socket.close()
+
+        mutex.release()  # Liberar o mutex após acessar o servidor de dados
+
     elif request_mold.match(request) and request.split('|')[0] == '4':
-        # editar isso para chamar a função certa no serviço de dados
+        mutex.acquire()  # Adquirir o mutex antes de acessar o servidor de dados
+
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.connect((HOST_DADOS, PORT_DADOS))
         server_socket.sendall(request.encode())
         client_socket.sendall('cliente saiu'.encode())
 
-    elif request_mold.match(request) and request.split('|')[0] == '7':
+        server_socket.close()
 
-        # editar isso para chamar a função certa no serviço de dados
+        mutex.release()  # Liberar o mutex após acessar o servidor de dados
+
+    elif request_mold.match(request) and request.split('|')[0] == '7':
+        mutex.acquire()  # Adquirir o mutex antes de acessar o servidor de dados
+
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.connect((HOST_DADOS, PORT_DADOS))
         server_socket.sendall(request.encode())
@@ -78,10 +86,13 @@ def handle_client_request(client_socket):
 
         if response.split('|')[1] == '1':
             client_socket.sendall(response.encode())
-
         else:
             client_socket.sendall('Login incorreto!'.encode())
             client_socket.close()
+
+        server_socket.close()
+
+        mutex.release()  # Liberar o mutex após acessar o servidor de dados
 
     else:
         response = "ERROR - Invalid request" + (f'{request}')
@@ -89,7 +100,7 @@ def handle_client_request(client_socket):
         client_socket.close()
 
 
-# Inicie o servidor de aplicação
+# Iniciar o servidor de aplicação
 if is_port_in_use(PORT):
     PORT += 1
     application_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -104,4 +115,4 @@ print(f'Servidor iniciado em {HOST}:{PORT}')
 
 while True:
     client_socket, _ = application_server.accept()
-    handle_client_request(client_socket)
+    threading.Thread(target=handle_client_request, args=(client_socket,)).start()
