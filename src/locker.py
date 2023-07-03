@@ -43,7 +43,7 @@ class MultilockWithTimeout:
         self.timeout_threads[process_id] = Thread(target=self._verify_timeout, args=(process_id, lambda: self.stop_threads[process_id]))
         self.timeout_threads[process_id].start()
 
-    def _verify_timeout(self, process_id, stop):
+    def verify_timeout(self, process_id, stop):
         start_time = monotonic_ns()
         while (monotonic_ns() - start_time) <  self.timeout_grant_in_nsecs and not stop():
             continue

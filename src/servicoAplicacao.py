@@ -142,6 +142,7 @@ def handle_client_request(message, edge_socket):
     index = queue.index(pid)
     # Lógica para armazenar e recuperar os dados relevantes
     print(f'Handling client request: {message} - index: {index}')
+    
     lock.acquire(index)
     if message.split('|')[0] == '1':
         queue.append(message.split('|')[1])
@@ -168,7 +169,7 @@ def handle_client_request(message, edge_socket):
 
     elif message.split('|')[0] == '7':
         login(message, edge_socket)
-    
+    lock.verify_timeout(index)
 # threading.Thread(target=exc_mut).start()
 threading.Thread(target=terminal).start()
 # threading.Thread(target=mutual_exclusion).start()
