@@ -1810,3 +1810,5 @@ Client 00006048 solicitou acesso ao servidor
 Client 00006048 has access to make op at 2023-07-02 22:00:53.027588
 Client 00017088 has left the critical region at 2023-07-02 22:00:53.043588
 17 failed to transfer 00008964441 to 18
+Accounts already generated
+Accounts already generated
