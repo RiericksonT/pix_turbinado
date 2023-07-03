@@ -4,6 +4,7 @@ import socket
 import random
 import sqlite3
 import threading
+import locker
 
 conn = sqlite3.connect('./database/banco_de_dados.db')
 cursor = conn.cursor()
@@ -11,6 +12,8 @@ cursor = conn.cursor()
 HOST = '127.0.0.1'
 PORT = 10001
 F = 2048  # Tamanho fixo da mensagem em bytes
+
+lock = locker.MultilockWithTimeout(5)
 
 # Inicie o servidor de dados
 data_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -23,27 +26,6 @@ logados = []
 
 queue = []
 accessing_now = None
-
-lock = threading.Lock()
-
-class Semaphore:
-    def __init__(self, value):
-        self.value = value
-        self.queue = []
-
-    def acquire(self):
-        self.queue.append(threading.current_thread())
-        while self.queue[0] != threading.current_thread() or self.value == 0:
-            pass
-        self.value -= 1
-        self.queue.pop(0)
-
-    def release(self):
-        self.value += 1
-
-
-access_semaphore = threading.Semaphore(1)
-
 
 def write_file(text):
     with open('log_server.txt', 'a') as file:
@@ -59,15 +41,6 @@ def read_file(id):
                 count += 1
         return (f'Account {id} was accessed {count} times')
     
-# def exc_mut():
-#     global accessing_now
-#     while True:
-#         if len(queue) > 0:
-#             if accessing_now is None:
-#                 access_semaphore.acquire()
-#                 accessing_now = queue[0]
-#                 access_semaphore.release()
-
 def terminal():
     global queue
     global accessing_now
@@ -105,10 +78,11 @@ def generate_accounts(quantity):
 
 
 def login(message, edge_socket):
+    
     conn = sqlite3.connect('./database/banco_de_dados.db')
     cursor = conn.cursor()
 
-    dono = message.split('|')[1]
+    dono = message.split('|')[3]
     password = message.split('|')[2]
 
     sql = "SELECT * FROM contas WHERE dono = ? AND senha = ?"
@@ -117,6 +91,7 @@ def login(message, edge_socket):
     result = cursor.fetchall()
     if len(result) > 0:
         edge_socket.sendall('7|1|0|0'.encode())
+        
         logados.append(dono)
         write_file(f'{dono} with {password} access account\n')
     else:
@@ -130,6 +105,7 @@ def send_pix(client_socket, message):
     
     print(f'PIX request: {message}')
     msg_id = message.split('|')[0]
+    
     conta_origem = message.split('|')[2].zfill(2)
     conta_destino = message.split('|')[3]
     valor = message.split('|')[4]
@@ -162,17 +138,16 @@ def handle_client_request(message, edge_socket):
 
     global queue
     global accessing_now
+    pid = message.split('|')[1].lstrip('0')
+    index = queue.index(pid)
     # Lógica para armazenar e recuperar os dados relevantes
-    print(f'Handling client request: {message}')
+    print(f'Handling client request: {message} - index: {index}')
+    lock.acquire(index)
     if message.split('|')[0] == '1':
         queue.append(message.split('|')[1])
-        print(f'Queue: {queue} and accessing now: {accessing_now}')
         print(f'Client {message.split("|")[1]} has been added to the queue')
         write_file(
             f"Client {message.split('|')[1]} solicitou acesso ao servidor\n")
-
-        # while accessing_now != queue[0]:
-        #     continue
 
 
         # if accessing_now == message.split('|')[1]:
@@ -189,17 +164,22 @@ def handle_client_request(message, edge_socket):
             f"Client {message.split('|')[1]} has left the critical region at {datetime.datetime.now()}\n")
         accessing_now = None
         queue.pop(0)
+        lock.release(index)
 
     elif message.split('|')[0] == '7':
         login(message, edge_socket)
-
+    
 # threading.Thread(target=exc_mut).start()
 threading.Thread(target=terminal).start()
+# threading.Thread(target=mutual_exclusion).start()
 generate_accounts(quantity)
 
 while True:
     edge_socket, _ = data_server.accept()
     message = edge_socket.recv(F).decode()
+    pid = message.split('|')[1].lstrip('0')
+    queue.append(pid)
     threading.Thread(target=handle_client_request, args=(message, edge_socket)).start()
+    
 
         

@@ -37,5 +37,3 @@ if __name__ == '__main__':
     process_servicoAplicacao = multiprocessing.Process(target=run_servicoAplicacao)
     process_servicoAplicacao.start()
 
-    process_cliente = multiprocessing.Process(target=run_cliente)
-    process_cliente.start()

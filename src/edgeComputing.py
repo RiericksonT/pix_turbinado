@@ -11,7 +11,7 @@ F = 2048  # Tamanho fixo da mensagem em bytes
 HOST_DADOS = '127.0.0.1'
 PORT_DADOS = 10001
 
-request_mold = re.compile(r'^[1-9]\|[0-9]{1,8}\|[0-9]{1,3}\|[0-9]{1,3}\|[0-9]{1,11}$')
+request_mold = re.compile(r'^[1-9]\|[0-9]{1,8}\|[0-9]{1,3}\|[0-9]{1,8}\|[0-9]{1,11}$')
 
 mutex = threading.Lock()  # Inicializar o mutex
 

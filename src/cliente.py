@@ -2,11 +2,13 @@ import socket
 import time
 import geradorMensagem
 import random
+import os
 
 
 DNS_HOST = '127.0.0.1'
 DNS_PORT = 53
 
+process_id = str(os.getpid()).zfill(8)
 F = 2048  # Tamanho fixo da mensagem em bytes
 op = 10
 
@@ -38,7 +40,7 @@ rand_acc = random.randint(0, 20)
 # Obtenha o endereço do balanceador de carga para o domínio especificado
 lb_address = get_load_balancer_address(domain)
 
-response = send_request_to_load_balancer(lb_address, f'7|{rand_acc}|123|0|0')
+response = send_request_to_load_balancer(lb_address, f'7|{process_id}|123|{rand_acc}|0')
 print(response)
 if response.split('|')[1] == "1":
     for i in range(0, op):
@@ -46,19 +48,19 @@ if response.split('|')[1] == "1":
         rand_acc2 = a if rand_acc == a else rand_acc + 1 if rand_acc < 20 else rand_acc - 1
         rand_val = random.randint(0, 99999999)
         # Envie uma solicitação para o balanceador de carga
-        request = geradorMensagem.gerador_msg(1, 0, 0, 0)
+        request = geradorMensagem.gerador_msg(1, process_id, 0, 0, 0)
         print(f'my request: {request}')
         response = send_request_to_load_balancer(lb_address, request)
         print(f'Respostas depois de solicitar acesso {response}')
 
         if response.split('|')[1] == "1":
             operation = geradorMensagem.gerador_msg(
-                3, rand_acc, rand_acc2, rand_val)
+                3, process_id, rand_acc, rand_acc2, rand_val)
             print(f'operacao {operation}')
             response = send_request_to_load_balancer(lb_address, operation)
             print(f'resposta dps da operação {response}')
-            time.sleep(5)
-            exit_msg = geradorMensagem.gerador_msg(4, 0, 0, 0)
+            time.sleep(1)
+            exit_msg = geradorMensagem.gerador_msg(4, process_id, 0, 0, 0)
             response = send_request_to_load_balancer(lb_address, exit_msg)
             print(f'Saindo... {response}')
         else:
